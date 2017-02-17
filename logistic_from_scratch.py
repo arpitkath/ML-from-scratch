@@ -1,4 +1,5 @@
-from math import exp
+from math import exp, sqrt
+import numpy as np
 
 def sigmoid(z):
 	"""
@@ -55,4 +56,43 @@ def SGD(X, y, learning_rate, n_epochs):
 
 	return b, W
 
+def AdaGrad(X, y, n_epochs, fudge_factor=1e-6, step=1e-2):
+
+	learning_rate = [0 for _ in xrange(len(X[0]))]
+	b = 0
+	W = list(learning_rate)
+
+	for epoch in xrange(n_epochs):
+		for i in xrange(len(X)):
+			y_predicted = predict(X[i], y[i], W, b)
+			error = y[i] - y_predicted
+			b += step * error * y_predicted * (1.0 - y_predicted)
+			gradient = [0] * len(W)
+			for j in xrange(len(W)):
+				gradient[j] = y_predicted * (1.0 - y_predicted) * X[i][j] * error
+				learning_rate[j] += gradient[j] ** 2
+				gradient[j] /= (fudge_factor + sqrt(learning_rate[j]))
+				W[j] += step * gradient[j]
+
+	return b, W
+
+def RMSProp(X, y, n_epochs, fudge_factor=1e-6, step=1e-2, decay_rate=1e-1):
+
+	learning_rate = [0 for _ in xrange(len(X[0]))]
+	b = 0
+	W = list(learning_rate)
+
+	for epoch in xrange(n_epochs):
+		for i in xrange(len(X)):
+			y_predicted = predict(X[i], y[i], W, b)
+			error = y[i] - y_predicted
+			b += step * error * y_predicted * (1.0 - y_predicted)
+			gradient = [0] * len(W)
+			for j in xrange(len(W)):
+				gradient[j] = y_predicted * (1.0 - y_predicted) * X[i][j] * error
+				learning_rate[j] = (decay_rate * learning_rate[j]) + ( (1.0 - decay_rate) * gradient[j] ** 2 ) # Added decay_rate with AdaGrad.
+				gradient[j] /= (fudge_factor + sqrt(learning_rate[j]))
+				W[j] += step * gradient[j]
+
+	return b, W
 
