@@ -20,6 +20,12 @@ Tried to implement some common machine learning algorithms from scratch.<br>
       <li> Plot of decision boundary </li>
     </ul>
   </li>
+  <li> Principal Component Analysis
+    <ul>
+      <li> Eigen Value Decomposition </li>
+      <li> Kaiser Rule for selecting components. </li>
+      <li> Scree Plot rule for selecting components. </li>
+    </ul>
     <li> K Nearest Neighbors
     <ul>
       <li> Similarity Function </li>
