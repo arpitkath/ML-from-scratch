@@ -52,7 +52,17 @@ class PCA:
                 self.data[i][j] -= mean
         return self.data
 
-
+    # To calculate number of eigenpairs to be taken according to kaiser rule/scree graph.
+    def num_of_comp(self, eig):
+        eig = sorted(eig, reverse=True)
+        curr_dec = 99999
+        i=0
+        while abs(curr_dec)>1:
+            if i+1==len(eig):
+                return len(list(filter(lambda x: x>1, eig)))
+            curr_dec=eig[i+1]-eig[i]
+            i+=1
+        return min(len(list(filter(lambda x: x>1, eig))), i)
 
 
 #data = [[1, 2, 3], [3, 8, 4], [9, 6, 11]]
