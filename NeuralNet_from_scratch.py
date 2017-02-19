@@ -88,7 +88,9 @@ def make_model(n_hidden, n_pass):
 			print  "Loss after iteration %i: %f" %(i, loss(model))
 
 	return model
-
+#####################################
+# Copied below code from http://stackoverflow.com/questions/34829807/understand-how-this-lambda-function-works
+#####################################
 def plot_decision_boundary(pred_func):
     # Set min and max values and give it some padding
     x_min, x_max = X[:, 0].min() - .5, X[:, 0].max() + .5
