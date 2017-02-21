@@ -42,22 +42,30 @@ def SGD(X, y, learning_rate, n_epochs):
 	W = [0 for _ in xrange(len(X[0]))]
 
 	for epoch in xrange(n_epochs):
-		total_error = 0
 		for i in xrange(len(X)):
 			y_predicted = predict(X[i], y[i], W, b)
 			error = y[i] - y_predicted
-			total_error += error ** 2
 			b += learning_rate * error * y_predicted * (1.0 - y_predicted)
 			for j in xrange(len(W)):
-				W[j] += learning_rate * error * y_predicted * (1.0 - y_predicted) * X[i][j]
-
-		if epoch % 100 == 0:
-			print "Epoch = %d, Error = %.2f, alpha = %.2f" % (epoch, total_error, learning_rate)
+				W[j] += learning_rate * error * y_predicted * (1.0 - y_predicted) * X[i][j] # Not sure of this line
 
 	return b, W
 
+'''
+AdaGrad is used for automatically learn the learning rate.
+Every feature has its own learning rate, which depends on the history of gradient calculated in that direction.
+Also, the learning rate for every dimension changes at every step, unlike in GGD, where it remains constant.
+'''
 def AdaGrad(X, y, n_epochs, fudge_factor=1e-6, step=1e-2):
+	'''
+	Arguments :
+	fudge_factor - A threshold used to prevent divide by zero error.
+	step - step size for change of weights.
 
+	Return :
+	W - Weights
+	b - bias term.
+	'''
 	learning_rate = [0 for _ in xrange(len(X[0]))]
 	b = 0
 	W = list(learning_rate)
