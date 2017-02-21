@@ -46,7 +46,7 @@ def rearrange_centroids(X, centroids):
 		centroid[i] = []
 
 	for x in X:
-		c = centroid_of(c, centroids)
+		c = centroid_of(x, centroids)
 		centroid[c].append(x)
 
 	new_centroids = []
@@ -56,7 +56,7 @@ def rearrange_centroids(X, centroids):
 			for i in xrange(len(x)):
 				new_centroid[i] += x[i]
 		for i in xrange(len(new_centroid)):
-			new_centroid[i] /= (len(centroid[c]) * 1.0)
+			new_centroid[i] /= float(len(centroid[c]))
 		new_centroids.append(new_centroid)
 
 	return new_centroids
@@ -69,9 +69,7 @@ def KMeans(X, n):
 	while not converged(centroids, previous_centroids, n_iters):
 		centroids = rearrange_centroids(X, centroids)
 		n_iters += 1
-	y = []
-	for x in X:
-		y.append(centroid_of(x, centroids))
+	y = [centroid_of(x, centroids) for x in X]
 
 	return y
 
