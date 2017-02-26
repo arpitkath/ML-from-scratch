@@ -42,5 +42,7 @@ Tried to implement some common machine learning algorithms from scratch.<br>
    </li>
     <li> KMeans algorithm
    </li>
+   <li> Perceptron Learning Algorithm (PLA)
+   </li>
 </ul>
   
