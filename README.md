@@ -26,23 +26,28 @@ Tried to implement some common machine learning algorithms from scratch.<br>
       <li> Kaiser Rule for selecting components. </li>
       <li> Scree Plot rule for selecting components. </li>
     </ul>
-    <li> K Nearest Neighbors
+  </li>
+  <li> K Nearest Neighbors
     <ul>
       <li> Similarity Function </li>
       <li> Regular KNN </li>
       <li> Weighted KNN </li>
     </ul>
   </li>
-    <li> Decision Tree
+  <li> Decision Tree
     <ul>
       <li> Gini Index Function </li>
       <li> Entropy Function </li>
       <li> CART algorithm </li>
     </ul>
    </li>
-    <li> KMeans algorithm
-   </li>
-   <li> Perceptron Learning Algorithm (PLA)
-   </li>
+  <li> KMeans algorithm
+    <ul>
+      <li> Random assignment. </li>
+      <li> Initializing using KMeans++. </li>
+    </ul>
+  </li>
+  <li> Perceptron Learning Algorithm (PLA)
+  </li>
 </ul>
   
