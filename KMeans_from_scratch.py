@@ -1,10 +1,11 @@
 import random
+import scipy
 
 MAX_ITERS = 1000
 
 def kmeans_pp(X, n):
 	
-	assert n < len(X)
+	assert n <= len(X)
 	centroids = [X[0]]1
 	while len(centroids) < n:
 		dist = scipy.array([min([scipy.inner(centroid - x, centroid - x) for centroid in centroids]) for x in X])
