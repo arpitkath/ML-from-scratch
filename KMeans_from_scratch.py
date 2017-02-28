@@ -2,6 +2,21 @@ import random
 
 MAX_ITERS = 1000
 
+def kmeans_pp(X, n):
+	
+	assert n < len(X)
+	centroids = [X[0]]
+	while len(centroids) < n:
+		dist = scipy.array([min([scipy.inner(centroid - x, centroid - x) for centroid in centroids]) for x in X])
+		probs = dist / dist.sum()
+		cumm_probs = probs.cumsum()
+		thres = random.random()
+		for i, prob in enumerate(cumm_probs):
+			if prob > thres:
+				centroids.append(X[i])
+				break
+	return centroids
+
 def initialize_centroids(X, n):
 
 	assert n <= len(X)
